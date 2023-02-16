@@ -1,0 +1,19 @@
+version: "3"
+
+services:
+  postgres:
+    image: postgres
+    environment:
+      - POSTGRES_USER=natalie
+      - POSTGRES_DB=postgresql
+      - POSTGRES_PASSWORD=natalie
+
+  web:
+    build: .
+    ports:
+      - "8080:8080"
+    links:
+      - form
+    restart: always
+    logging:
+      driver: ${LOGGING_DRIVER:-json-file}
